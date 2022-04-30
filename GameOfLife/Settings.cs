@@ -15,9 +15,13 @@ namespace GameOfLife
         public int Height { get; }
         public int Width { get; }
 
-        public Settings(bool[,] field = null, string symbol = "█")
+        private readonly IMap _map;
+
+        public Settings(IMap map = null, string symbol = "█")
         {
-            InitialField = field ?? DefaultMap.Get();
+            _map = map ?? new DefaultMap();
+
+            InitialField = _map.Get();
             Symbol = symbol;
 
             Height = InitialField.GetLength(0);

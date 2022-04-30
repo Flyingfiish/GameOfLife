@@ -8,6 +8,6 @@ namespace GameOfLife.Maps
 {
     internal interface IMap
     {
-        public static bool[,] Get() => throw new NotImplementedException();
+        public bool[,] Get();
     }
 }
