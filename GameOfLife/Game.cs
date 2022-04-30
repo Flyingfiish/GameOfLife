@@ -42,13 +42,10 @@ namespace GameOfLife
                     int sum = GetSumActiveAroundPoint(i, j);
                     if (sum == 3)
                         newState[i, j] = true;
-                    else if( (sum == 2 || sum == 3) && _state[i, j] == true)
+                    else if ((sum == 2 || sum == 3) && _state[i, j] == true)
                         newState[i, j] = true;
-                    else
-                        newState[i, j] = false;
                 }
             }
-
             return newState;
         }
 
@@ -85,6 +82,29 @@ namespace GameOfLife
                 result.Add((i, j - 1));
             if (j < _settings.Width - 1)
                 result.Add((i, j + 1));
+
+            if (i == 0)
+                result.Add((_settings.Height - 1, j));
+            if (i == 0 &&
+                j == 0)
+                result.Add((_settings.Height - 1, _settings.Width - 1));
+            if (i == 0 &&
+                j == _settings.Width - 1)
+                result.Add((_settings.Height - 1, 0));
+
+            if (i == _settings.Height - 1)
+                result.Add((0, j));
+            if (i == _settings.Height - 1 &&
+                j == 0)
+                result.Add((0, _settings.Width - 1));
+            if (i == _settings.Height - 1 &&
+                j == _settings.Width - 1)
+                result.Add((0, 0));
+
+            if (j == 0)
+                result.Add((i, _settings.Width - 1));
+            if (j == _settings.Width - 1)
+                result.Add((i, 0));
 
             return result;
         }
